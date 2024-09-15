@@ -20,29 +20,30 @@ function check_js()
 {
     if (is_page('pemindahan-ruangan-2')) {
         echo "<script>
-       
-        let group8 = document.querySelector('.u-form-group-8');
-        let group9 = document.querySelector('.u-form-group-9');
+     
+        let groupRadioButton = document.querySelectorAll('.u-form-radiobutton');
        
         (function() {
-             group8.style.display = 'none';
-             group9.style.display = 'none';
+            groupRadioButton.forEach(function(radio) {
+               radio.style.display = 'none';
+            });
         })();
         
-        var element = document.querySelector('[name=\"gedung_id\"]');
+        let element = document.querySelector('[name=\"gedung_id\"]');
         element.addEventListener('change', function() {
-            var value = element.value;
+            let value = parseInt(element.value);
             if (value != 'Pilih Gedung'){
-                if (value == 1){
-                    group9.style.display = 'none';
-                    group8.style.display = 'block';
-                } else if (value == 2){ 
-                    group8.style.display = 'none';
-                    group9.style.display = 'block';
-                }
+                groupRadioButton.forEach(function(radio,i) {
+                    if((value - 1) == i){
+                        radio.style.display = 'block';
+                    } else {
+                        radio.style.display = 'none';
+                    }
+                });
             } else {
-                group8.style.display = 'none';
-                group9.style.display = 'none';
+                groupRadioButton.forEach(function(radio) {
+                    radio.style.display = 'none';
+                });
             }
         });
         </script>";
