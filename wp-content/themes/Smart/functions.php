@@ -16,6 +16,34 @@ locate_template(array('library/breadcrumbs.php'), true);
 locate_template(array('library/theme-wizard/config.php'), true);
 locate_template(array('library/translations/class-theme-multi-languages.php'), true);
 
+function check_js()
+{
+    if (is_page('pemindahan-ruangan-2')) {
+        echo "<script>
+       
+        (function() {
+             document.querySelector('.u-form-group-8').style.display = 'none';
+        })();
+        
+        var element = document.querySelector('[name=\"gedung_id\"]');
+        console.log(element)
+        element.addEventListener('change', function() {
+            var value = element.value;
+            console.log(value);
+            if (value != 'Pilih Gedung'){
+                var elCheck = document.querySelector('.u-form-group-8');
+                elCheck.style.display = 'block';
+            } else {
+                var elCheck = document.querySelector('.u-form-group-8');
+                elCheck.style.display = 'none';
+            }
+        });
+        </script>";
+    }
+}
+
+add_action('wp_footer', 'check_js');
+
 if (!function_exists('theme_setup')) {
     /**
      * Sets up theme defaults and registers support for various WordPress features.
