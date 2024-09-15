@@ -21,21 +21,28 @@ function check_js()
     if (is_page('pemindahan-ruangan-2')) {
         echo "<script>
        
+        let group8 = document.querySelector('.u-form-group-8');
+        let group9 = document.querySelector('.u-form-group-9');
+       
         (function() {
-             document.querySelector('.u-form-group-8').style.display = 'none';
+             group8.style.display = 'none';
+             group9.style.display = 'none';
         })();
         
         var element = document.querySelector('[name=\"gedung_id\"]');
-        console.log(element)
         element.addEventListener('change', function() {
             var value = element.value;
-            console.log(value);
             if (value != 'Pilih Gedung'){
-                var elCheck = document.querySelector('.u-form-group-8');
-                elCheck.style.display = 'block';
+                if (value == 1){
+                    group9.style.display = 'none';
+                    group8.style.display = 'block';
+                } else if (value == 2){ 
+                    group8.style.display = 'none';
+                    group9.style.display = 'block';
+                }
             } else {
-                var elCheck = document.querySelector('.u-form-group-8');
-                elCheck.style.display = 'none';
+                group8.style.display = 'none';
+                group9.style.display = 'none';
             }
         });
         </script>";
